@@ -52,12 +52,29 @@ public class Main {
 	}
 
 	public static void modifyItem() {
-		System.out.print("Enter index of item to be replaced: ");
-		int index = scanner.nextInt();
-		scanner.nextLine(); //To clear the buffer so that next input will not raise exceptions
-		System.out.println("Enter the new Item: ");
-		String newItem = scanner.nextLine();
-		listInit1.replaceGroceryItem(index,newItem);
+		System.out.println("Do you know the index of the item to be replaced? (y/n)");
+		String response = scanner.nextLine();
+		int index;
+		if(response.equals("y")) {
+			System.out.print("Enter index of item to be replaced: ");
+			index = scanner.nextInt();
+			scanner.nextLine(); //To clear the buffer so that next input will not raise exceptions
+		} else {
+			System.out.println("At least enter the name of the item to be replaced: ");
+			String oldItem = scanner.nextLine();
+//			scanner.nextLine();
+			index = listInit1.findItem(oldItem);
+		}
+
+		if(index>-1) {
+			System.out.println("Enter the new Item: ");
+			String newItem = scanner.nextLine();
+			listInit1.replaceGroceryItem(index, newItem);
+			System.out.println("Item replaced");
+		} else {
+			System.out.println("Item to be replaced was not found!");
+			System.out.println("Could not replace item");
+		}
 	}
 
 	public static void removeItem() {
