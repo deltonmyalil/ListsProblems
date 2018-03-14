@@ -71,7 +71,9 @@ public class Main {
 		String searchKey = scanner.nextLine();
 		int index = listInit1.findItem(searchKey);
 		if(index>=0) {
-			System.out.println("Item found at index "+index);
+			System.out.println("Item found at index " + index);
+		} else {
+			System.out.println("Item not found");
 		}
 	}
 }
