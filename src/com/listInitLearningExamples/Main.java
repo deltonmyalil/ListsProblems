@@ -78,9 +78,24 @@ public class Main {
 	}
 
 	public static void removeItem() {
-		System.out.print("Enter index of the item to be removed: ");
-		int index = scanner.nextInt();
-		listInit1.removeGroceryItem(index);
+		System.out.println("Do you know the index of the item to be removed? (y/n)");
+		String response = scanner.nextLine();
+		int index;
+		if(response.equals("y")) {
+			System.out.print("Enter index of the item to be removed: ");
+			index = scanner.nextInt();
+		} else {
+			System.out.println("At least enter the name of the item to be removed: ");
+			String unwantedItem = scanner.nextLine();
+			index = listInit1.findItem(unwantedItem);
+		}
+		if(index>-1) {
+			listInit1.removeGroceryItem(index);
+			System.out.println("Item Removed");
+		} else {
+			System.out.println("Could not remove item. Item doesn't exist or invalid index");
+		}
+
 	}
 
 	public static void searchItem() {
