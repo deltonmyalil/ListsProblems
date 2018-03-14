@@ -1,5 +1,6 @@
 package com.listInitLearningExamples;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -108,4 +109,23 @@ public class Main {
 			System.out.println("Item not found");
 		}
 	}
+
+	public static String[] copyToRegulararray() {
+		String[] regularArray = new String[listInit1.getGroceryList().size()]; //first declare array with maxsize
+		regularArray = listInit1.getGroceryList().toArray(regularArray); //use toArray(targetArray) to copy
+		return regularArray;
+	} // This is how you copy the content of ArrayList to regular array
+
+	public static ArrayList<String> copyToAnotherArrayList() {
+		ArrayList<String> anotherArrayList = new ArrayList<String>(listInit1.getGroceryList()); //directly copy
+
+		//Another method
+		ArrayList<String> anotherAnotherArrayList = new ArrayList<String>(); //Initialize first
+		anotherAnotherArrayList.addAll(listInit1.getGroceryList()); //Then copy using addAll(sourceArrayList)
+
+		return anotherArrayList;
+		//or
+		//return anotherAnotherArrayList;
+	}
+
 }

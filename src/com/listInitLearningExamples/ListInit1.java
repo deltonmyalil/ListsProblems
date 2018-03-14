@@ -8,6 +8,9 @@ public class ListInit1 {
 	//int[] myArray = new int[10];
 	//this is a class, calling a constructor. Hence the (). Mention datatype in <>
 	private ArrayList<String> groceryList = new ArrayList<String>();
+//	private ArrayList<String> nextList = new ArrayList<String >(groceryList); //This copies groceryList into the new arrayList by passing it to the constructor
+//	private String[] regularArray = new String[groceryList.size()]; //To initialize a regular array with the arraylists size
+//	regularArray = groceryList.toArray(regularArray); //To convert into regular array //Wont work in this class
 
 	public void addGroceryItem(String item) {
 		groceryList.add(item);
@@ -40,4 +43,7 @@ public class ListInit1 {
 		return index;
 	}
 
+	public ArrayList<String> getGroceryList() {
+		return groceryList;
+	}
 }
