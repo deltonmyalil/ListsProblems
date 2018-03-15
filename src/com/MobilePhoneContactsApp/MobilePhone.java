@@ -1,4 +1,5 @@
 package com.MobilePhoneContactsApp;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -16,31 +17,39 @@ import java.util.ArrayList;
 // MobilePhone should do everything with Contact objects only.
 
 public class MobilePhone {
-	private static Contacts contacts = new Contacts();
+//	private static Contacts contacts = new Contacts();  // THIS STATIC OBJECT WAS MESSING UP ALL THE ITEMS IN THE ARRAY
+	// FOR FUTURE REFERENCE, DO NOT USE STATIC GLOBAL SHIT LIKE THIS TO ADD TEMPORARY VALUES TO ARRAY, THEY WILL CHANGE THE ENTIRE VALUES PRESENT IN THEM
 	private static ArrayList<Contacts> contactsArrayList = new ArrayList<Contacts>();
 	private static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		boolean loop = true;
 		printMenu();
-		while(loop) {
+		while (loop) {
 			System.out.println("Input choice: ");
 			int option = scanner.nextInt();
-			switch(option) {
-				case 0: printMenu();
-						break;
-				case 1: printContactList();
-						break;
-				case 2: addNewContact();
-						break;
-				case 3: editExistingContact();
-						break;
-				case 4: removeContact();
-						break;
-				case 5: contactLookup();
-						break;
-				case 6: loop = false;
-						break;
+			switch (option) {
+				case 0:
+					printMenu();
+					break;
+				case 1:
+					printContactList();
+					break;
+				case 2:
+					addNewContact();
+					break;
+				case 3:
+					editExistingContact();
+					break;
+				case 4:
+					removeContact();
+					break;
+				case 5:
+					contactLookup();
+					break;
+				case 6:
+					loop = false;
+					break;
 			}
 		}
 	}
@@ -56,9 +65,9 @@ public class MobilePhone {
 	}
 
 	public static void printContactList() {
-		for(int i=0; i<contactsArrayList.size(); i++) {
+		for (int i = 0; i < contactsArrayList.size(); i++) {
 			Contacts tempToPrint = contactsArrayList.get(i);
-			System.out.println("Contact number."+i+" Name: "+tempToPrint.getName()+"; Number: "+tempToPrint.getNumber());
+			System.out.println("Contact number." + i + " Name: " + tempToPrint.getName() + "; Number: " + tempToPrint.getNumber());
 		}
 	}
 
@@ -67,11 +76,12 @@ public class MobilePhone {
 		scanner.nextLine();
 		String name = scanner.nextLine();
 //		scanner.nextLine(); //not sure whether is needed
-		System.out.println("Enter number");
+		System.out.print("Enter number: ");
 		long number = scanner.nextLong();
-		contacts.setName(name);
-		contacts.setNumber(number);
-		contactsArrayList.add(contacts);
+		Contacts tempContact = new Contacts();
+		tempContact.setName(name);
+		tempContact.setNumber(number);
+		contactsArrayList.add(tempContact);
 	}
 
 	public static void editExistingContact() {
@@ -81,16 +91,15 @@ public class MobilePhone {
 		long oldNumber;
 		String name = scanner.nextLine();
 		scanner.nextLine();
-		for(i=0; i<contactsArrayList.size(); i++) {
+		for (i = 0; i < contactsArrayList.size(); i++) {
 			tempContact = contactsArrayList.get(i);
-			if(tempContact.getName().equals(name)) {
+			if (contactsArrayList.get(i).getName().equals(name)) {
 				contactsArrayList.remove(i);
-				break;
 			}
 		}
 		System.out.println("Do you want to re-enter the name? (y/n)");
 		String response = scanner.nextLine();
-		if(response.equals("y")) {
+		if (response.equals("y")) {
 			System.out.println("Enter new name: ");
 			tempContact.setName(scanner.nextLine());
 		} else {
@@ -100,29 +109,30 @@ public class MobilePhone {
 		oldNumber = tempContact.getNumber();
 		System.out.println("Do you want to re-enter new number? (y/n)");
 		String response2 = scanner.nextLine();
-		if(response2.equals("y")) {
+		if (response2.equals("y")) {
 			System.out.println("Enter new number: ");
 			tempContact.setNumber(scanner.nextLong());
 		} else {
 			tempContact.setNumber(oldNumber);
 		}
-		scanner.nextLine();
+//		scanner.nextLine();
 		contactsArrayList.add(tempContact);
 		System.out.println("Replaced old contact");
 	}
 
 	public static void contactLookup() {
 		System.out.println("Enter the name to lookup: ");
+		scanner.nextLine();
 		String lookupName = scanner.nextLine();
 		Contacts nameLookupTemp = new Contacts();
 		int i;
-		for(i=0; i<contactsArrayList.size(); i++) {
+		for (i = 0; i < contactsArrayList.size(); i++) {
 			nameLookupTemp = contactsArrayList.get(i);
-			if(nameLookupTemp.getName().equals(lookupName)) {
+			if (nameLookupTemp.getName().equals(lookupName)) {
 				break;
 			}
 		}
-		System.out.println("Requested Number is "+ nameLookupTemp.getNumber());
+		System.out.println("Requested Number is " + nameLookupTemp.getNumber());
 	}
 
 	public static void removeContact() {
@@ -130,9 +140,9 @@ public class MobilePhone {
 		scanner.nextLine();
 		String removeName = scanner.nextLine();
 		Contacts removeTempContact = new Contacts();
-		for(int i=0; i<contactsArrayList.size(); i++) {
+		for (int i = 0; i < contactsArrayList.size(); i++) {
 			removeTempContact = contactsArrayList.get(i);
-			if(removeTempContact.getName().equals(removeName)) {
+			if (removeTempContact.getName().equals(removeName)) {
 				contactsArrayList.remove(i);
 				break;
 			}
