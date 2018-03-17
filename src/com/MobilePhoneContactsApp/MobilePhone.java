@@ -15,7 +15,7 @@ import java.util.ArrayList;
 // Be sure not to expose the inner workings of the Arraylist to MobilePhone
 // e.g. no ints, no .get(i) etc
 // MobilePhone should do everything with Contact objects only.
-
+//Hackerrank
 public class MobilePhone {
 //	private static Contacts contacts = new Contacts();  // THIS STATIC OBJECT WAS MESSING UP ALL THE ITEMS IN THE ARRAY
 	// FOR FUTURE REFERENCE, DO NOT USE STATIC GLOBAL SHIT LIKE THIS TO ADD TEMPORARY VALUES TO ARRAY, THEY WILL CHANGE THE ENTIRE VALUES PRESENT IN THEM
